@@ -10,4 +10,10 @@ export class UserService {
   async users(): Promise<User[]> {
     return await this.user.find({}).exec();
   }
+
+  async create(data: User): Promise<User> {
+    const user = new this.user(data);
+
+    return await user.save();
+  }
 }
