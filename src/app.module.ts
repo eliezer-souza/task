@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
 import { ConfigModule } from 'config/config.module';
+import { RootModule } from './modules/root.module';
 
 @Module({
-  imports: [ConfigModule, UserModule],
+  imports: [ConfigModule, RootModule],
 })
 export class AppModule {}
