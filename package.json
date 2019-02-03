@@ -26,7 +26,6 @@
     "@nestjs/graphql": "^5.5.1",
     "@nestjs/mongoose": "^5.2.2",
     "apollo-server-express": "^2.3.3",
-    "core-js": "^3.0.0-beta.3",
     "dotenv": "^6.2.0",
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.4",
