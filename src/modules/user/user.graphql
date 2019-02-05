@@ -8,10 +8,12 @@ type User {
 
 type Query {
   users: [User!]
+  me(id: String): User!
 }
 
 type Mutation {
-  createUser(user: UserInput): User!
+  create(user: UserInput): User!
+  delete(id: String): User!
 }
 
 input UserInput {

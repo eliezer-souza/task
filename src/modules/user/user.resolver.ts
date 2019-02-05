@@ -10,8 +10,18 @@ export class UserResolver {
     return await this.userService.users();
   }
 
+  @Query()
+  async me(@Args('id') id: string) {
+    return await this.userService.me(id);
+  }
+
   @Mutation()
-  async createUser(@Args('user') user) {
+  async create(@Args('user') user) {
     return await this.userService.create(user);
+  }
+
+  @Mutation()
+  async delete(@Args('id') id: string) {
+    return await this.userService.delete(id);
   }
 }
