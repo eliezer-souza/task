@@ -1,6 +1,12 @@
-import { Schema, HookNextFunction } from 'mongoose';
+import { Schema, Document, HookNextFunction } from 'mongoose';
 import { hash } from 'bcryptjs';
-import { User } from './user.model';
+
+export interface User extends Document {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+}
 
 export const UserSchema = new Schema({
   name: {
@@ -24,13 +30,13 @@ export const UserSchema = new Schema({
   },
 });
 
-const hashPassword = async function(next: HookNextFunction) {
+UserSchema.pre<User>('save', async function hashPassword(
+  next: HookNextFunction,
+) {
   const user: User = this;
   if (!user.isModified('password')) {
     next();
   } else {
     this.password = await hash(this.password, 8);
   }
-};
-
-UserSchema.pre('save', hashPassword);
+});
