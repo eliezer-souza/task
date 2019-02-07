@@ -1,9 +1,20 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveProperty,
+  Parent,
+} from '@nestjs/graphql';
 import { UserService } from './user.service';
+import { TaskService } from '../task/task.service';
 
 @Resolver('User')
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly taskService: TaskService,
+  ) {}
 
   @Query()
   async users() {
@@ -16,12 +27,18 @@ export class UserResolver {
   }
 
   @Mutation()
-  async create(@Args('user') user) {
+  async createUser(@Args('user') user) {
     return await this.userService.create(user);
   }
 
   @Mutation()
-  async delete(@Args('id') id: string) {
+  async deleteUser(@Args('id') id: string) {
     return await this.userService.delete(id);
+  }
+
+  @ResolveProperty()
+  async tasks(@Parent() user) {
+    const { id } = user;
+    return await this.taskService.tasks(id);
   }
 }

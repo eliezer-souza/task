@@ -4,6 +4,7 @@ type User {
   username: String!
   email: String!
   password: String!
+  tasks: [Task]!
 }
 
 type Query {
@@ -12,8 +13,8 @@ type Query {
 }
 
 type Mutation {
-  create(user: UserInput): User!
-  delete(id: String): User!
+  createUser(user: UserInput): User!
+  deleteUser(id: String): User!
 }
 
 input UserInput {
