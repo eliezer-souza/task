@@ -30,7 +30,7 @@
     "dotenv": "^6.2.0",
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.4",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.7.5",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
